@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=app
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+#  batch:
+#    jdbc:
+#      initialize-schema: always
+#      table-prefix: batch_
+#      schema: batch
