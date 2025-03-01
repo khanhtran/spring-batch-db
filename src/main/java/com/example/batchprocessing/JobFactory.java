@@ -20,6 +20,7 @@ public class JobFactory {
                 .entrySet()
                 .stream()
                 .collect(Collectors.toMap(entry -> entry.getKey(), Map.Entry::getValue));
+        System.out.println("Jobs: " + this.jobs);
     }
 
     public Job getJob(String jobName) {

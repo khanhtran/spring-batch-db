@@ -11,6 +11,7 @@ import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.batch.test.JobRepositoryTestUtils;
 import org.springframework.batch.test.context.SpringBatchTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
@@ -32,11 +33,11 @@ class BatchConfigurationTest {
     @Autowired
     private JobRepositoryTestUtils jobRepositoryTestUtils;
     @Autowired
-    private Job importUserJob;
+    private Job[] jobs;
 
     @BeforeEach
     void setUp() {
-        jobLauncherTestUtils.setJob(importUserJob);
+        jobLauncherTestUtils.setJob(jobs[0]);
     }
 
     @AfterEach
