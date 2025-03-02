@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>spring-batch-dynamic</artifactId>
+	<artifactId>spring-batch-db</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-batch-dynamic</name>
-	<description>Dynamic load job</description>
+	<description>Creating new job instance on each run</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>

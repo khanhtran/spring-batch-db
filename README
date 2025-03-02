@@ -1,5 +1,26 @@
-A complete spring batch application
-- requires postgres database
-- run schema-all.sql to populate domain table
-- able to convert environment variables to jobParameters
-- job can be re run event if it completed successfully
+Default behavior:
+- run job -> create a job instance
+- run the job again: Exception A job instance already exists
+- update param: new job instance created
+
+Use custom runner that add a timestamp as a param, to create new job instance each run:
+- Disable SpringBatchAutoConfiguration: set spring.batch.job.enabled=false
+- Launch job with custom parameter:
+    JobParameters jobParameters = new JobParametersBuilder()
+        .addLong("time", System.currentTimeMillis())
+        .toJobParameters();
+    jobLauncher.run(job, jobParameters);
+
+Use batch in another schema other than what is in the datasource:
+- Issue: the init script doesn't honor table prefix
+- solution 1:
+    + copy and modify schema
+    + set spring.batch.jdbc.initialize-schema=never
+    + init schema manually
+    https://stackoverflow.com/questions/63274175/cannot-create-my-spring-batch-tables-in-a-different-schema-in-postgres
+- solution 2:
+    + copy and modify schema to application resource
+    + init the schema using spring boot
+        spring.sql.init.mode=always
+        spring.sql.init.schema-locations=classpath:schema.sql
+    + issue: table already exists -> need to use "if exist" in the script. not a clean solution

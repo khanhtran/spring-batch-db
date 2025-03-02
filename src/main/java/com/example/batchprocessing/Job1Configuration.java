@@ -13,12 +13,12 @@ public class Job1Configuration {
 
 	@Bean
 	public Step step1(JobRepository jobRepository, SampleTask sampleTask, PlatformTransactionManager platformTransactionManager) {
-		return new StepBuilder("step1", jobRepository).tasklet(sampleTask, platformTransactionManager).build();
+		return new StepBuilder("step1", jobRepository).allowStartIfComplete(true).tasklet(sampleTask, platformTransactionManager).build();
 	}
 
 	@Bean
 	public Job job1(JobRepository jobRepository, Step step1) {
-		return new JobBuilder("job1", jobRepository)
+		return new JobBuilder("MyCustomJob1", jobRepository)
 			.start(step1)
 			.build();
 	}
