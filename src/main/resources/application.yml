@@ -9,8 +9,8 @@ spring:
       enabled: false
     jdbc:
       initialize-schema: never
-      tablePrefix: batch.BATCH_
-  sql:
-    init:
-      mode: always
-      schema-locations: classpath:schema-postgresql-batch.sql
+      table-prefix: batch.BATCH_
+#  sql:
+#    init:
+#      mode: always
+#      schema-locations: classpath:schema-postgresql-batch.sql
